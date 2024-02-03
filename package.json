@@ -1,0 +1,14 @@
+{
+  "name": "bharat-intern",
+  "version": "1.0.0",
+  "description": "its a intership task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gokul ram j",
+  "license": "ISC",
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.2"
+  }
+}
