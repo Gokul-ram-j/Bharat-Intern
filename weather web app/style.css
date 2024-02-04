@@ -1,39 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
 
 *{
     padding: 0%;
     margin: 0%;
+    font-family: 'Protest Riot', sans-serif;
 }
+h1{
+    margin-top: 15px;
+    text-align: center;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+  }
 
 /* content */
 
 .content{
-    width: 100vw;
+    overflow-y: hidden;
     height: 100vh;
-    border: 2px solid black;
+    max-width: 100vw;
+    width: 98vw;
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.53),transparent,rgba(0, 0, 0, 0.53)),url("./assests/bg.jpg");
+    background-position: center;
+    background-size: cover;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 15px;
-}
-
-form{
-    border: 2px solid black;
-    margin: 20px;
-    padding: 15px;
+    grid-template-columns:35% 65%;
+    padding: 20px;
+    column-gap: 10px;
     
 }
-form>input,form>button{
-    margin-top: 10px;
-    padding: 10px;
-    min-height: 25px;
-    width: 80%;
+.infodiv{
+    width: 100%;
+    height: 100%;
+    border: 2px solid black;
+    background: rgba(255, 255, 255, 0.294);
+   
+   
+}
+.info{
+    text-align: start;
+    padding-left: 10px;
+    box-shadow: 2px 2px 12px 1px black;
+    width: 75%;
+    margin: auto;
+    margin-top: 30px;
+}
+.info>h1{
+    font-size: 25px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.imginfo{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    height: 100px;
+    width: 100%;
+    margin: auto;
+}
+
+.imginfo>h1{
+    font-size: 50px;
+    margin-top: 20%;
+}
+
+.imginfo>video{
+    height: 60%;
+    width: 100%;
+    mix-blend-mode:multiply;
+}
+form{
+    display: flex;
+    gap: 20px;
+    padding-right: 20px;
+}
+
+form>input{
+    width: 65%;
+    margin-left: 45px;
+    margin-top: 20px;
+    height: 35px;
+    border-radius: 10px;
+    border: 2px solid black;
+    background: transparent;
 }
 form>button{
+    width: 90px;
+    height: 37px;
+    margin-top: 20px;
+    border-radius:10px;
+    padding-left: 2px;
+    padding-right:2px;
+    font-size: large;
+    background-color: black;
+    color: white;
+    
+   
+
+}
+
+form>button:active{
+    scale: .9;
+}
+form>button:hover{
+    background: transparent;
+    color: black;
+    border: 2px solid black;
+}
+
+.container{
+    max-width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.294);
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: repeat(1fr);
+    padding: 20px;
+    gap: 5px;
+    overflow: scroll;
+    
+}
+
+.temp_list{
+    /* border: 2px solid white; */
+    text-align: center;
+    color: white;
+    height: fit-content;
     padding: 10px;
-    min-height: 25px;
-    width: 40%;
-    margin: auto;
-    margin-top: 10px;
+    border: 2px solid black;
+    
+}
+
+.temp_list:hover{
+    box-shadow: 2px 2px 2px 2px black;
+    
+}
+
+
+.temp_list>video{
+    height: 70px;
+    width: 100px;
+    margin-left: 8px;
+    mix-blend-mode: multiply;
 }
 
 
@@ -51,7 +162,6 @@ form>button{
     text-align:right;
     width:100%;
     height:100vh;
-    z-index: -10;
 }
 
 .gmap_canvas {

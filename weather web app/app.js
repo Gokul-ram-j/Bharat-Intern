@@ -1,12 +1,10 @@
-
-
-
-
-city="pakistan"
+let city="tenkasi";
+let container=document.querySelector(".container")
 let apikey="c94afd9f90bda3adc26cac08109f742c"
-let apiurl=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey}`
+let apiurl=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey}&units=metric`
 let tempDataset=[];
 let windDataset=[];
+
 
 google.charts.load('current', {packages: ['corechart', 'line']});
 
@@ -74,15 +72,87 @@ function getBackground(location){
     let mapelem=
                 `
                 <div class="gmap_canvas">
-                    <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=${location}&amp;t=p&amp;z=12&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+                    <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=${location}&amp;t=p&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
                 </div>
                 `
     document.querySelector(".mapouter").innerHTML=mapelem
 }
 
 
+// ----------------------------------------display all time weather------------------------------------------------
+
+function alltimeweather(list){
+  let vid;
+  for(item of list){
+      let weathercondition=item.weather[0].main;
+      let weatherdesc=item.weather[0].description;
+     if(weathercondition=="Clouds"){
+      if(weatherdesc=="scattered clouds"){
+        vid="./assests/clearsky.mp4"
+      }
+      else if(weatherdesc=="overcast clouds"){
+       vid="./assests/overcastcloud.mp4"
+      }
+      else{
+       vid="./assests/fewclouds.mp4"
+      }
+     }
+     else if(weathercondition=="Rain"){
+      if(weatherdesc=="light rain"){
+        vid="./assests/lightrain.mp4"
+      }
+      else{
+        vid="./assests/heavyrain.mp4"
+      }
+     }
+     else if(weathercondition=="Snow"){
+      vid="./assests/snowflake.mp4"
+     }
+     else{
+      vid="./assests/wind.mp4"
+     }
+     let tempelem=`<div class="temp_list">
+     <p>${item.dt_txt}</p>
+     <p>temp:${item.main.temp}</p>
+     <video src=${vid} autoplay muted loop></video>
+     <p>wind speed:${item.wind.speed}</p>
+      </div>`
+      container.innerHTML+=tempelem
+
+  } 
+}
+
+// display main weather info
+
+async function maindata(){
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`)
+  .then((res)=>res.json())
+  .then((data)=>{
+    var currentdate = new Date();
+    var datetime = currentdate.getDate() + "/" + (currentdate.getMonth()+1) + "/" + currentdate.getFullYear() + "  " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+    let maindisplayelem=`
+    <div class="imginfo">
+    <h1>${data.main.temp}<span>&#8451</span></h1>
+    <video src="./assests/overcastcloud.mp4" muted autoplay loop></video>
+    </div> 
+    <h1>${data.name}</h1>
+    <h1>${datetime}</h1>
+    <h1>humidity: ${data.main.humidity}</h1>
+    <h1>minimum temperatre: ${data.main.temp_min}</h1>
+    <h1>maximum temperature: ${data.main.temp_max}</h1>
+    `
+    console.log(data)
+    document.querySelector(".info").innerHTML=maindisplayelem
+    // <h1>ground level: ${data.main?.grnd_level}</h1>
+    // <h1>sea level: ${data.main?.sea_level}</h1>
+  
+  })
+}
+
 // --------------------------------------------------------getting data----------------------------------------------
 async function searching(city,apikey){
+  maindata(city)
     fetch(apiurl)
         .then((Response) => Response.json())
         .then((data) => {
@@ -92,22 +162,33 @@ async function searching(city,apikey){
             else{
                 console.log(data)};
                 displayWeather(data.list)
-                getBackground(data.city.name)
-                region=data.city.name
-                temp=data.list[0].main.temp
+                alltimeweather(data.list)
+                getBackground(city)
+                // region=data.city.name
+                // temp=data.list[0].main.temp
+                
 
             }
         )
 }
 
-searching(city,apikey);
+// ----------default--------------
+searching("tenkasi",apikey)
+
+let form=document.querySelector("form")
+form.addEventListener("submit",(e)=>{
+  e.preventDefault()
+  let inp=document.querySelector("#inputbox")
+  if(inp.value==""){
+    alert("please enter a city name !!")
+  }
+  else{
+    city=inp.value
+    container.innerHTML=""
+    searching(city,apikey);
+  }
+})
 
 
 
-// dt_txt
-// main->temp,feels_like,temp_min,temp_max,grnd_level,humidity,pressure,sea_level
-// weather->0->main,description
-// wind->speed,deg,gust
 
-// dt__txt
-// for getting date only -> data.list[0].dt_txt.split(" ")[1])
