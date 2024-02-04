@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
 
 
+html{
+    scroll-behavior: smooth;
+}
+
 *{
     padding: 0%;
     margin: 0%;
@@ -14,6 +18,45 @@ h1{
 *::-webkit-scrollbar {
     display: none;
   }
+
+/* intro */
+
+.intro{
+    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.53),rgba(83, 82, 82, 0.443),rgba(0, 0, 0, 0.53)),url("./assests/introbg.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.context{
+    width: 70%;
+    height: fit-content;
+    margin: auto;
+}
+
+.context>h1{
+    font-size: 100px;
+    margin-top: 15%;
+}
+
+.context>button{
+    padding: 10px;
+    min-width: 100px;
+    max-width: fit-content;
+    height: fit-content;
+    background: transparent;
+    border: 2px solid black;
+    border-radius: 15px;
+    margin-left: 45%;
+    font-size: 20px;
+}
+button>a{
+    color: black;
+    text-decoration: none;
+
+}
 
 /* content */
 
@@ -121,6 +164,7 @@ form>button:hover{
     padding: 20px;
     gap: 5px;
     overflow: scroll;
+    margin-bottom: 20px;
     
 }
 

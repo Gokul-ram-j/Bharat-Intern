@@ -129,12 +129,40 @@ async function maindata(){
   fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`)
   .then((res)=>res.json())
   .then((data)=>{
+    let vid;
+    let weathercondition=data.weather[0].main;
+    let weatherdesc=data.weather[0].description;
+    if(weathercondition=="Clouds"){
+      if(weatherdesc=="scattered clouds"){
+        vid="./assests/clearsky.mp4"
+      }
+      else if(weatherdesc=="overcast clouds"){
+       vid="./assests/overcastcloud.mp4"
+      }
+      else{
+       vid="./assests/fewclouds.mp4"
+      }
+     }
+     else if(weathercondition=="Rain"){
+      if(weatherdesc=="light rain"){
+        vid="./assests/lightrain.mp4"
+      }
+      else{
+        vid="./assests/heavyrain.mp4"
+      }
+     }
+     else if(weathercondition=="Snow"){
+      vid="./assests/snowflake.mp4"
+     }
+     else{
+      vid="./assests/wind.mp4"
+     }
     var currentdate = new Date();
     var datetime = currentdate.getDate() + "/" + (currentdate.getMonth()+1) + "/" + currentdate.getFullYear() + "  " + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
     let maindisplayelem=`
     <div class="imginfo">
     <h1>${data.main.temp}<span>&#8451</span></h1>
-    <video src="./assests/overcastcloud.mp4" muted autoplay loop></video>
+    <video src=${vid} muted autoplay loop></video>
     </div> 
     <h1>${data.name}</h1>
     <h1>${datetime}</h1>
