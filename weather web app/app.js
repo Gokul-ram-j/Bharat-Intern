@@ -1,6 +1,7 @@
 let city="tenkasi";
 let container=document.querySelector(".container")
-let apikey="c94afd9f90bda3adc26cac08109f742c"
+let apikey=""
+// c94afd9f90bda3adc26cac08109f742c
 let apiurl=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey}&units=metric`
 let tempDataset=[];
 let windDataset=[];
