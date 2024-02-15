@@ -1,6 +1,6 @@
 let city="tenkasi";
 let container=document.querySelector(".container")
-let apikey=""
+let apikey="c94afd9f90bda3adc26cac08109f742c"
 // c94afd9f90bda3adc26cac08109f742c
 let apiurl=`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey}&units=metric`
 let tempDataset=[];
@@ -88,34 +88,34 @@ function alltimeweather(list){
       let weathercondition=item.weather[0].main;
       let weatherdesc=item.weather[0].description;
      if(weathercondition=="Clouds"){
-      if(weatherdesc=="scattered clouds"){
-        vid="./assests/clearsky.mp4"
+      if(weatherdesc=="scattered clouds" || weatherdesc=="clear sky"){
+        vid="./assests/clearskyi.png"
       }
       else if(weatherdesc=="overcast clouds"){
-       vid="./assests/overcastcloud.mp4"
+       vid="./assests/overcastcloudi.png"
       }
       else{
-       vid="./assests/fewclouds.mp4"
+       vid="./assests/fewcloudsi.png"
       }
      }
      else if(weathercondition=="Rain"){
       if(weatherdesc=="light rain"){
-        vid="./assests/lightrain.mp4"
+        vid="./assests/lightraini.png"
       }
       else{
-        vid="./assests/heavyrain.mp4"
+        vid="./assests/heavyraini.png"
       }
      }
      else if(weathercondition=="Snow"){
-      vid="./assests/snowflake.mp4"
+      vid="./assests/snowflakei.png"
      }
      else{
-      vid="./assests/wind.mp4"
+      vid="./assests/windi.png"
      }
      let tempelem=`<div class="temp_list">
      <p>${item.dt_txt}</p>
      <p>temp:${item.main.temp}</p>
-     <video src=${vid} autoplay muted loop></video>
+     <img src=${vid} autoplay muted loop></img>
      <p>wind speed:${item.wind.speed}</p>
       </div>`
       container.innerHTML+=tempelem
