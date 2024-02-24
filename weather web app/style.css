@@ -25,19 +25,21 @@ h1{
     overflow: auto;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to bottom,rgba(0, 0, 0, 0.53),rgba(83, 82, 82, 0.443),rgba(0, 0, 0, 0.53)),url("./assests/introbg.jpg");
-    background-position: center;
-    background-size: cover;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .context{
-    width: 70%;
-    height: fit-content;
-    margin: auto;
+    text-align: center;
+    padding: 5%;
+    background:  rgba(108, 255, 108, 0.634);
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(16, 192, 16);
 }
 
 .context>h1{
-    font-size: 100px;
+    font-size: 75px;
     margin-top: 15%;
 }
 
@@ -47,15 +49,26 @@ h1{
     max-width: fit-content;
     height: fit-content;
     background: transparent;
-    border: 2px solid black;
+    border: 3px solid green;
     border-radius: 15px;
-    margin-left: 45%;
+    margin:2% auto;
     font-size: 20px;
+    
 }
 button>a{
-    color: black;
     text-decoration: none;
+    background:  rgba(108, 255, 108, 0.634);
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px green;
+    
 
+}
+
+.intro-img{
+    background: url("./assests/Weather-bro.png");
+    background-position: center;
+    background-size: cover;
 }
 
 /* content */
